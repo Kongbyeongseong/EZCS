@@ -10,12 +10,24 @@
 #     #path('signup/', auth_views.signupView.as_view(template_name='accounts/Login.html'), name='signup'),
 # ]
 from django.urls import path 
+<<<<<<< HEAD
+=======
+from django.contrib.auth import views as auth_views
+>>>>>>> 8e63f706690a8a255cbdf7dcb00b2165fa563487
 from . import views
 
 app_name = 'accounts'
 
 urlpatterns = [
+<<<<<<< HEAD
     path('signup/', views.signup, name='signup'),
     path('login/', views.login_view, name='login'),
     path('logout/', views.logout_view, name='logout'),
+=======
+
+    #path('signup/', views.signup, name='signup'),
+    #path('login/', views.login_view, name='login'),
+    path('', views.login, name='login'),
+    path('logout/', views.logout, name='logout'),
+>>>>>>> 8e63f706690a8a255cbdf7dcb00b2165fa563487
 ]
