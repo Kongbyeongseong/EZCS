@@ -22,12 +22,9 @@
 </style>
 
 <body>
-    <form id="adminLoginForm" data-url="{% url 'accounts:adminlogin' %}" data-csrf="{{ csrf_token }}">
+    <form id="adminLoginForm" data-url="{% url 'accounts:adminLogin' %}" data-csrf="{{ csrf_token }}">
         <div class="container-fluid my_container">
             <div>
-                <div class="p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3">
-                    21조에 오신 것을 환영합니다! 👋
-                </div>
                 <h2>관리자 로그인</h2>
             </div>
             <div>
@@ -36,20 +33,13 @@
             <div>
                 <input type="password" id="adminPassword" name="adminPassword" placeholder=Password>
             </div>
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                <label class="form-check-label" for="flexCheckDefault">로그인 정보 저장
-                </label>
+            <div>
+                <input type="button" value="관리자 로그인" class="btn btn-outline-primary" style="width: 5cm;" onclick="check_login()">
             </div>
             <div>
-                <input type="button" value="관리자 로그인" class="btn btn-outline-primary" style="width: 5cm;" onclick="check_adminlogin()">
-            </div>
-            <div>
-                <p><a href="{% url 'accounts:signup' %}">회원가입</a> | <a href="password.html">비밀번호 찾기</a></p>
-
+                <p><a href="{% url 'accounts:login' %}">사용자 로그인으로 돌아가기</a></p>
             </div>
         </div>
     </form>
 </body>
-
 </html>

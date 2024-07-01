@@ -24,39 +24,6 @@ function check_login(event) {
     });
 }
 
-$(document).ready(function () {
-    $("#adminLoginForm").on("submit", check_login);
-});
-
-function check_adminlogin(event) {
-    let param = {
-        username: $("#adminUsername").val(),
-        password: $("#adminPassword").val()
-    };
-    var from = $("#adminLoginForm");
-    var url = from.data("url");
-    var csrf = from.data("csrf");
-    $.ajax({
-        url: url,
-        type: "post",
-        data: param,
-        dataType: "json",
-        headers: {
-            "X-CSRFToken": csrf
-        },
-        success: function (data) {
-            if (data.result != "success") {
-                alert(data.result);
-            } else {
-                location.href = "/";
-            }
-        }
-    });
-}
-
-$(document).ready(function () {
-    $("#adminLoginForm").on("submit", check_adminlogin);
-});
 
 function showSignupForm() {
     document.getElementById("loginForm").style.display = "none";
