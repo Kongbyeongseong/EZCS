@@ -1,3 +1,33 @@
+function check_login(event) {
+    event.preventDefault(); // 폼 제출 방지
+
+    let param = {
+        username: $("#loginUsername").val(),
+        password: $("#loginPassword").val()
+    };
+
+    $.ajax({
+        url: "{% url 'accounts:login' %}",
+        type: "post",
+        data: param,
+        dataType: "json",
+        headers: {
+            "X-CSRFToken": "{{ csrf_token }}"
+        },
+        success: function (data) {
+            if (data.result != "success") {
+                alert(data.result);
+            } else {
+                location.href = "/";
+            }
+        }
+    });
+}
+
+$(document).ready(function () {
+    $("#loginForm").on("submit", check_login);
+});
+
 function showSignupForm() {
     document.getElementById('loginForm').style.display = 'none';
     document.getElementById('signupForm').style.display = 'block';

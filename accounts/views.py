@@ -1,6 +1,18 @@
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from .models import User
+'''
+def signup(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('home')  # 회원가입 후 리디렉션할 페이지
+    else:
+        form = UserCreationForm()
+    return render(request, 'accounts/signup.html', {'form': form})
+'''
 
 def login(request):
     if request.method == 'GET':
@@ -29,3 +41,7 @@ def login(request):
 def logout(request):
     request.session.pop('user')
     return redirect('/')
+
+def signup(request):
+    # 회원가입 페이지로 리다이렉트
+    return render(request, 'accounts/signup.html')
