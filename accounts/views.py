@@ -45,3 +45,6 @@ def logout(request):
 
 def signup(request):
     return render(request, 'accounts/signup.html')
+
+def adminlogin(request):
+    return render(request, 'accounts/adminlogin.html')
