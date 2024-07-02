@@ -35,10 +35,15 @@ def logout(request):
     request.session.pop('user')
     return redirect('/')
 
+from django.shortcuts import render, redirect
+from django.http import JsonResponse
+from .models import User
+
+def adminLogin(request):
+    return render(request, 'accounts/adminlogin.html')
 
 def searchPW(request):
     return render(request, 'accounts/searchpw.html')
-
 
 def signup(request):
     errors = {}
@@ -93,3 +98,4 @@ def check_email(request):
     email = request.GET.get('email')
     exists = User.objects.filter(email=email).exists()
     return JsonResponse({'exists': exists})
+
