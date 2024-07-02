@@ -11,4 +11,5 @@ urlpatterns = [
     path('approve/<int:id>/', views.approve_user, name='approve_user'),
     # path('reject/<int:id>/', views.reject_user, name='reject_user'),
     path('quitter/', views.quitter, name='quitter'),
+    path('manager_user/', views.manager_user, name='manager_user'),
 ]

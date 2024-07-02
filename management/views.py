@@ -37,6 +37,11 @@ def allow(request):
     data = User.objects.filter(active_status = 0)
     return render(request, 'management/allow.html',{'data':data})
 
+# 가입승인페이지
+def manager_user(request):
+    data = User.objects.filter(active_status = 0)
+    return render(request, 'management/manager_user.html',{'data':data})
+
 # def allow_detail(request, id):
 #     user = User.objects.get(id=id)
 #     return render(request, 'management/management_detail.html', {'user':user})   
