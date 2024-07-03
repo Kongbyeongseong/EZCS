@@ -88,14 +88,6 @@ def reject_active(request, id):
     return redirect('management:reject')
 
 
-#거부
-# def reject_user(request, id):
-#     user = get_object_or_404(User, id=id)
-#     user.active_status = 4
-#     user.save()
-#     return render(request, 'management/allow.html',{'user':user})
-
-
 #활동중인 인원 비활성화 시키기 위한 페이지
 def inactive(request):
     data = User.objects.filter(~Q(active_status = 0)) #여기서 사용하는 Q는 장고에서 쓰는 or
