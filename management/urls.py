@@ -4,6 +4,7 @@ from . import views
 app_name = 'management'
 
 urlpatterns = [
+
     path('', views.dashboard, name='dashboard'), #대쉬보드 화면
     path('detail/<int:id>/', views.detail, name='detail'), # 직원상세정보화면
     path('detail/<int:id>/edit', views.manager_edit, name='edit'), # 직원상세정보수정
