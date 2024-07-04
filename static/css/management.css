@@ -240,9 +240,3 @@ table {
     color: #009879;
     cursor: pointer;
 }
-
-.styled-table tbody tr.active-allow {
-    font-weight: bold;
-    color: #009879;
-    cursor: default;
-}
