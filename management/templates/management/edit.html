@@ -35,7 +35,7 @@
             <tr>
                 <th>이메일</th>
                 <td>
-                    <input type="email" id="email" name="email" class="form-control mb-2" value="{{ user.email| email_masker }}">
+                    <input type="email" id="email" name="email" class="form-control mb-2" value="{{ user.email }}">
                 </td>
             </tr>
             <tr>
@@ -68,11 +68,11 @@
                 <td>
                     <input type="hidden" class="form-control" id="active_status" name="active_status" value="{{ user.active_status }}">
                     <select id="active_status_select" name="active_status_select" class="form-control mb-2" onchange="chagneSelect(this);">
-                        <option value="0" {% if user.active_status==0 %}selected{% endif %}>Inactive</option>
-                        <option value="1" {% if user.active_status==1 %}selected{% endif %}>Active</option>
-                        <option value="2" {% if user.active_status==2 %}selected{% endif %}>On Leave</option>
-                        <option value="3" {% if user.active_status==3 %}selected{% endif %}>Retired</option>
-                        <option value="4" {% if user.active_status==4 %}selected{% endif %}>Rejection</option>
+                        <option value="0" {% if user.active_status == 0 %}selected{% endif %}>Inactive</option>
+                        <option value="1" {% if user.active_status == 1 %}selected{% endif %}>Active</option>
+                        <option value="2" {% if user.active_status == 2 %}selected{% endif %}>On Leave</option>
+                        <option value="3" {% if user.active_status == 3 %}selected{% endif %}>Retired</option>
+                        <option value="4" {% if user.active_status == 4 %}selected{% endif %}>Rejection</option>
                     </select>
                 </td>
             </tr>
