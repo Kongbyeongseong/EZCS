@@ -208,3 +208,4 @@ def search(request):
     else:
         results = []
     return render(request, 'education/edu_history.html', {'data': results, 'query': query})
+
