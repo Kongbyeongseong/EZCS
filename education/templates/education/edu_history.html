@@ -14,22 +14,26 @@
 </script>
 <link rel="stylesheet" href="{% static 'education/css/history.css' %}">
 
-<form action="{% url 'management:search' %}" method="POST">
-    <div class="dashboard">
+<form action="" method="POST">
+    {% csrf_token %}
+    <div class="">
         <div>
             <h1>롤플레잉 이력</h1>
         </div>
-
-        <div>
-            <ul>
-                <li>
-                    <input type="text" class="form-control" id="searchText" name="seachText" placeholder="검색창">
-                </li>
-                <li>
-                    <input type="submit" class="btn btn-primary" value="검색">
-                </li>
-            </ul>
-
+        <div class="search-container">
+            <input type="text" class="form-control search-input" id="searchText" name="searchText" placeholder="검색창">
+            <select class="form-control search-select" name="category">
+                <option value="">카테고리 선택</option>
+                <option value="0">Additional</option>
+                <option value="1">Policies</option>
+                <option value="2">Charges</option>
+            </select>
+            <select class="form-control search-select" name="result">
+                <option value="">결과 선택</option>
+                <option value="pass">통과</option>
+                <option value="fail">실패</option>
+            </select>
+            <input type="submit" class="btn btn-primary search-button" value="검색">
         </div>
         <div>
             <p>총 {{ logs|length }}건</p>
@@ -38,7 +42,7 @@
             <table class="styled-table">
                 <thead>
                     <tr>
-                        <th>id</th>
+                        <th>번호</th>
                         <th>body</th>
                         <th>create_time</th>
                     </tr>
@@ -46,10 +50,10 @@
                 <tbody>
                     {% if logs|length != 0 %}
                     {% for log in logs %}
-                    <tr data-url="{% url 'log_detail' log.id %}">
+                    <tr data-url="{% url 'education:edu_details' log.id %}">
                         <td>{{ forloop.counter }}</td>
                         <td>{{ log.body }}</td>
-                        <td>{{ log.create_time }}</td> 
+                        <td>{{ log.create_time }}</td>
                     </tr>
                     {% endfor %}
                     {% else %}
@@ -60,30 +64,23 @@
                 </tbody>
             </table>
         </div>
+        <div class="pagination">
+            <div class="step-links">
+                {% if logs.has_previous %}
+                <a href="?page=1">&laquo; 처음</a>
+                <a href="?page={{ logs.previous_page_number }}">이전</a>
+                {% endif %}
+
+                <span class="current">
+                    페이지 {{ logs.number }} / {{ logs.paginator.num_pages }}
+                </span>
+
+                {% if logs.has_next %}
+                <a href="?page={{ logs.next_page_number }}">다음</a>
+                <a href="?page={{ logs.paginator.num_pages }}">마지막 &raquo;</a>
+                {% endif %}
+            </div>
+        </div>
     </div>
 </form>
 {% endblock %}
-
-{% comment %} <tbody>
-    {% for log in logs %}
-    <tr>
-        <td>{{ log.id }}</td>
-        <td>{{ log.body }}</td>
-        <td>{{ log.create_time }}</td>
-        <td>{{ log.user_id }}</td>
-    </tr>
-    {% endfor %}
-</tbody>
-</table>
-</div> {% endcomment %}
-
-<!-- #검색로직
-def search(request):
-    query = request.POST.get('searchText', '')
-   
-    if query:
-        results = User.objects.filter(name__icontains=query)
-    else:
-        results = []
-    return render(request, 'education/edu_history.html', {'data': results, 'query': query}) -->
-
