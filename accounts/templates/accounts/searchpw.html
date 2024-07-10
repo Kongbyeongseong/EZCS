@@ -12,8 +12,7 @@
                     <div class="col-md-6 mb-3 my-form">
                         <label for="name">ID</label>
                         <input type="text" class="form-control" id="forgotPasswordUsername" name="loginUsername" required>
-                        <div id="usernameValid" class="valid-feedback"></div>
-                        <div id="usernameError" class="invalid-feedback"></div>
+                     
                     </div>
                     <div class="col-md-6 mb-3 my-form">
                         <label for="birthdate">생년월일</label>
@@ -25,7 +24,8 @@
                     </div>
                 </div>
                 <div>
-                    <input type="button" value="휴대폰 인증" class="btn btn-outline-primary" onclick="sendResetRequest()">
+                    <!-- <input type="button" value="비밀번호 재설정" class="btn btn-outline-primary" onclick="sendResetRequest()"> -->
+                    <p><a href="javascript:void(0);" onclick="ResetPW();">비밀번호 재설정</a>
                 </div>
                 <div>
                     <p><a href="{% url 'accounts:login' %}"> 로그인으로 돌아가기</a></p>
@@ -35,4 +35,3 @@
     </div>
 </div>
 {% endblock %}
-

@@ -1,10 +1,28 @@
-function sendResetRequest() {
+function ResetPW() {
+    var width = 800;
+    var height = 600;
+    var left = (screen.width - width) / 2;
+    var top = (screen.height - height) / 2;
+    var resetPWurl = "{% url 'accounts:reset_password' %}";
+
     let username = $("#forgotPasswordUsername").val();
     let birthdate = $("#birthdate").val();
     let phone_number = $("#phone_number").val();
-    let csrf = $("#csrf").val();
-    let url = $("#searchPWForm").data("url");
 
+    if (!username || !birthdate || !phone_number) {
+        alert("모든 필드를 채워주세요.");
+        return;
+    }
+
+    let data = {
+        username: username,
+        birthdate: birthdate,
+        phone_number: phone_number
+    };
+
+    let form = $("#searchPWForm");
+    let url = form.data("url");
+    let csrf = $("input[name=csrf]").val();
 
     $.ajax({
         url: url,
@@ -17,27 +35,13 @@ function sendResetRequest() {
         success: function (response) {
             if (response.result === 'success') {
                 alert(response.msg);
-                window.location.href = "/accounts/reset_password/";
+                window.open("{% url 'accounts:reset_password' %}", "Reset PassWord", "width=" + width + ",height=" + height + ",top=" + top + ",left=" + left);
             } else {
                 alert(response.msg);
             }
+        },
+        error: function (xhr, status, error) {
+            alert("요청 중 오류가 발생했습니다. 다시 시도해 주세요.");
         }
     });
-}
-
-function chkUserName() {
-    let username = $("#forgotPasswordUsername");
-    let name = $("#name").val();
-    let phone = $("#phone").val();
-
-    if (username.val().trim() == "") {
-        $("#usernameError").text("아이디를 입력하세요.");
-        $("#usernameError").show();
-        username.addClass("is-invalid");
-        if (username.hasClass("is-valid")) {
-            username.removeClass("is-valid");
-        }
-        username.focus();
-        return;
-    }
 }
