@@ -24,7 +24,6 @@ function ResetPW() {
     let url = form.data("url");
     let csrf = $("input[name=csrf]").val();
 
-
     $.ajax({
         url: url,
         type: "post",
@@ -37,7 +36,6 @@ function ResetPW() {
             if (response.result === 'success') {
                 alert(response.msg);
                 window.open("{% url 'accounts:reset_password' %}", "Reset PassWord", "width=" + width + ",height=" + height + ",top=" + top + ",left=" + left);
-
             } else {
                 alert(response.msg);
             }
@@ -46,5 +44,4 @@ function ResetPW() {
             alert("요청 중 오류가 발생했습니다. 다시 시도해 주세요.");
         }
     });
-
 }
