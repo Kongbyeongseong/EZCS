@@ -67,6 +67,8 @@ def user_logout(request):
     return redirect('/')
 
 
+def consent(request):
+    return render(request, 'accounts/consent.html')
 
 def signup(request):
     if request.method == 'GET':
