@@ -18,7 +18,6 @@ body {
     min-height: 100vh;
     /* Ensures the body takes at least full viewport height */
 }
-
 .main-content {
     /* margin-top: 80px;  */
     padding: 20px;
@@ -28,8 +27,8 @@ body {
     flex-direction: column;
     height: 100%;
     background-color: whitesmoke;
-}
 
+}
 img.ezcs-logo {
     width: 100px;
     height: auto;
@@ -195,13 +194,6 @@ img.ezcs-logo {
 .logout:hover {
     background-color: #e71d36;
 }
-
-/* .main-content {
-    margin-top: 20px;
-    padding: 20px;
-    margin-left: 40px;
-    flex-grow: 1;
-} */
 
 .footer {
     background-color: #ffffff;
