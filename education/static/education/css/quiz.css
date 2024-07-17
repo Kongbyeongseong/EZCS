@@ -4,6 +4,7 @@
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     margin-top: 20px;
+    width: 100%;
 }
 
 h1 {
@@ -142,7 +143,7 @@ h1 {
     justify-content: flex-end;
 }
 
-.submit-button {
+.submit-button, .end-button {
     padding: 10px 20px;
     font-size: 16px;
     background-color: #2ec4b6;
@@ -152,6 +153,10 @@ h1 {
     cursor: pointer;
 }
 
-.submit-button:hover {
+.end-button {
+    text-decoration: none;
+}
+
+.submit-button:hover, .end-button:hover{
     background-color: #007a63;
 }
