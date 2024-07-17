@@ -4,6 +4,7 @@ $(document).ready(function () {
     const checkBoxes = $('input[name="agreement"]');
     const submitButton = $('input[type="button"]');
 
+
     const agreements = {
         termsOfService: false,
         privacyPolicy: false,
@@ -38,7 +39,6 @@ $(document).ready(function () {
             submitButton.css('background-color', '#007bff');
             submitButton.css('color', '#fff');
         }
-
     }
 
     checkAll.on('change', function () {
@@ -51,7 +51,6 @@ $(document).ready(function () {
         toggleSubmitButton();
     });
 });
-
 
 function test(url) {
     // if (!$("#termsOfService").is(":checked")) {
@@ -67,3 +66,4 @@ function test(url) {
     }
     location.href = url
 }
+

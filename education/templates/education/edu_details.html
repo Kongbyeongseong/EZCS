@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}로그 상세 정보{% endblock %}
+{% block title %}AI 트레이너 이력 상세{% endblock %}
 
 {% block content %}
 {% load static %}
@@ -10,7 +10,7 @@
 <div class="dashboard">
     <div class="section chat-section">
         <div class="log-info">
-            <span>카테고리: </span><span>{{ head.category }}</span>
+            <span>카테고리: </span><span>{{ head.get_category_display }}</span>
             <span> | </span>
             <span>날짜: </span><span>{{ head.create_time|date:"Y-m-d H:i" }}</span>
             <span> | </span>
