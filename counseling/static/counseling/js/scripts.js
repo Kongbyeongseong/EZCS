@@ -205,7 +205,7 @@ function stopCounseling() {
 }
 
 function loadAIMessages(classify, message) {
-    if (data.success && classify === "customer") appendAILoading();
+    if ( classify === "customer") appendAILoading();
 
     const formData = new FormData();
     formData.append("classify", classify);
