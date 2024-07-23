@@ -20,9 +20,10 @@ def validate_image(file):
 
 
 def mask_name(full_name):
-    if len(full_name) > 1:
+    if len(full_name) <= 2:
         return full_name[:-1] + '*'
-    return full_name
+    else:
+        return full_name[0] + '*' * (len(full_name) - 2) + full_name[-1]
     
 def list(request, flag):
     search_select = request.GET.get("searchSelect", "")
@@ -64,12 +65,12 @@ def list(request, flag):
     query2 = Q()
     if start_date and end_date:
         start_date = datetime.strptime(start_date, '%Y-%m-%d')
-        end_date = datetime.strptime(end_date, '%Y-%m-%d') + timedelta(days=1) - timedelta(seconds=1)
+        end_date = datetime.strptime(end_date, '%Y-%m-%d')
         
         query2 &= Q(auth_user__date_joined__gte=start_date)
         query2 &= Q(auth_user__date_joined__lte=end_date)
     else:
-        one_month_ago = datetime.now() - timedelta(days=30)
+        one_month_ago = datetime.now() - timedelta(days=365)
         query2 &= Q(auth_user__date_joined__gte=one_month_ago)
         query2 &= Q(auth_user__date_joined__lte=datetime.now())
         start_date = one_month_ago.strftime('%Y-%m-%d')
