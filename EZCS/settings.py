@@ -86,10 +86,11 @@ WSGI_APPLICATION = "EZCS.wsgi.application"
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'EZCS',
+        'NAME': 'ezcs',
         'USER': os.environ['MySQL_ID'],
         'PASSWORD': os.environ['MySQL_PW'],
-        'HOST': 'localhost',
+        'HOST': 'database-1.cf6gigmokj2d.ap-northeast-2.rds.amazonaws.com',
+        # 'HOST': '127.0.0.1',
         'PORT': '3306',
     }
 }
@@ -102,7 +103,7 @@ AUTH_PASSWORD_VALIDATORS = [
         "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
         'OPTIONS': {
             'user_attributes': ('email', 'first_name', 'last_name'),
-            'max_similarity': 1.0,
+            'max_similarity': 1.0,  # 사용자 속성과 비밀번호 간의 최대 유사도 (기본값은 0.7)
         },
     },
     {

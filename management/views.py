@@ -17,7 +17,13 @@ def board_edit(request, id):
         body = request.POST.get('body')
         flag = request.POST.get('flag')
         file = request.FILES.get('file')
-        
+        print("="*30)
+        print(title)
+        print(body)
+        print(file)
+        print(flag)
+        print("="*30)
+
         board.title = title
         board.body = body
         board.flag = flag
