@@ -9,6 +9,25 @@ from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 from bs4 import BeautifulSoup
 
+def board_edit(request, id):
+    board = get_object_or_404(Board, id=id)
+    
+    if request.method == 'POST':
+        title = request.POST.get('title')
+        body = request.POST.get('body')
+        flag = request.POST.get('flag')
+        file = request.FILES.get('file')
+        
+        board.title = title
+        board.body = body
+        board.flag = flag
+        
+        if file:
+            board.file = file
+
+        board.save()
+        return redirect('management:board_detail', id=board.id)
+    return render(request, 'management/board_detail.html', {'board': board})
 
 def board_delete(request, id):
     board = get_object_or_404(Board, id=id)
