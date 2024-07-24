@@ -26,23 +26,23 @@
                             <div class="body-content">
                                 {{ board.body|safe }}
                             </div>
-                            <input type="hidden" id="body" name="body" required>
                         </div>
+                        <input type="hidden" id="body" name="body" required value="{{ board.body }}">
                     </td>
                 </tr>
                 <tr>
                     <th>상태</th>
                     <td>
-                        <select class="form-control" name="flag" required disabled>
-                            <option value="0">활성화</option>
-                            <option value="1">비활성화</option>
+                        <select class="form-control" name="flag">
+                            <option value="0" selected>활성화</option>
+                            <option value="1" selected>비활성화</option>
                         </select>
                     </td>
                 </tr>
                 <tr>
                     <th>파일</th>
                     <td>
-                        <input type="file" class="form-control" name="file" accept=".jpg, .jpeg, .png" disabled>
+                        <input type="file" class="form-control" name="file" accept=".jpg, .jpeg, .png">
                         <small class="form-text text-muted">jpg, jpeg, png 파일만 업로드 가능합니다.</small>
 
                         {% if board.file %}
@@ -99,13 +99,6 @@
         var body = document.querySelector('input[name=body]');
         body.value = quill.root.innerHTML;
         console.log('Body content:', body.value);
-
-        document.querySelector('input[name=title]').readOnly = true;
-        document.querySelector('select[name=flag]').disabled = true;
-        document.querySelector('input[name=file]').disabled = true;
-        quill.disable();
-        document.querySelector('#edit-button').style.display = 'inline-block';
-        document.querySelector('#save-button').style.display = 'none';
     };
 </script>
 {% endblock %}
