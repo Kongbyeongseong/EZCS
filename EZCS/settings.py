@@ -90,8 +90,8 @@ DATABASES = {
         'USER': os.environ['MySQL_ID'],
         #'USER': 'admin',
         'PASSWORD': os.environ['MySQL_PW'],
-        'HOST': 'database-1.cf6gigmokj2d.ap-northeast-2.rds.amazonaws.com',
-        # 'HOST': '127.0.0.1',
+        # 'HOST': 'database-1.cf6gigmokj2d.ap-northeast-2.rds.amazonaws.com',
+        'HOST': '127.0.0.1',
         'PORT': '3306',
     }
 }
