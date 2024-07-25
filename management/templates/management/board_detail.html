@@ -104,9 +104,12 @@
         var fileThumbnail = document.querySelector('#file-thumbnail');
         fileThumbnail.style.display = 'inline';
 
+        // 파일 URL을 안전하게 처리
+        var fileUrl = "{% if board.file %}{{ board.file.url }}{% endif %}";
+
         var images = document.querySelectorAll('#editor-container img');
         images.forEach(function(img) {
-            if (img.src.includes('{{ board.file.url }}')) {
+            if (fileUrl && img.src.includes(fileUrl)) {
                 img.style.display = 'none';
             }
         });
