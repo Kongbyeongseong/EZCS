@@ -185,7 +185,6 @@ def board_detail(request, id):
     board = get_object_or_404(Board, id=id)
     return render(request, 'management/board_detail.html', {'board': board})
 
-
 def board_edit(request, id):
     board = get_object_or_404(Board, id=id)
     
