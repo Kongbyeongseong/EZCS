@@ -11,7 +11,7 @@
                 <tr>
                     <th>제목</th>
                     <td>
-                        <input type="text" class="form-control" name="title" value="{{ board.title }}" required readonly>
+                        <input type="text" class="form-control" name="title" value="{{ board.title }}" {% if not is_editing %}disabled{% endif %} required>
                     </td>
                 </tr>
                 <tr>
@@ -33,16 +33,17 @@
                 <tr>
                     <th>상태</th>
                     <td>
-                        <select class="form-control" name="flag">
-                            <option value="0" selected>활성화</option>
-                            <option value="1" selected>비활성화</option>
+                        <select class="form-control" name="flag_display" {% if not is_editing %}disabled{% endif %} required>
+                            <option value="0" {% if board.flag == 0 %}selected{% endif %}>활성화</option>
+                            <option value="1" {% if board.flag == 1 %}selected{% endif %}>비활성화</option>
                         </select>
+                        <input type="hidden" name="flag" id="flag_hidden" value="{{ board.flag }}">
                     </td>
                 </tr>
                 <tr>
                     <th>파일</th>
                     <td>
-                        <input type="file" class="form-control" name="file" accept=".jpg, .jpeg, .png">
+                        <input type="file" class="form-control" name="file" accept=".jpg, .jpeg, .png" {% if not is_editing %}disabled{% endif %}>
                         <small class="form-text text-muted">jpg, jpeg, png 파일만 업로드 가능합니다.</small>
 
                         {% if board.file %}
@@ -87,9 +88,9 @@
     });
 
     document.querySelector('#edit-button').onclick = function () {
-        quill.enable();
-        document.querySelector('input[name=title]').readOnly = false;
-        document.querySelector('select[name=flag]').disabled = false;
+        quill.enable(); // 에디터를 편집 가능 상태로 변경
+        document.querySelector('input[name=title]').disabled = false;
+        document.querySelector('select[name=flag_display]').disabled = false;
         document.querySelector('input[name=file]').disabled = false;
         document.querySelector('#edit-button').style.display = 'none';
         document.querySelector('#save-button').style.display = 'inline-block';
@@ -98,7 +99,11 @@
     document.querySelector('form').onsubmit = function () {
         var body = document.querySelector('input[name=body]');
         body.value = quill.root.innerHTML;
-        console.log('Body content:', body.value);
+
+        var flagDisplay = document.querySelector('select[name=flag_display]');
+        var flagHidden = document.querySelector('input[name=flag]');
+        flagHidden.value = flagDisplay.value;
+
     };
 </script>
 {% endblock %}
